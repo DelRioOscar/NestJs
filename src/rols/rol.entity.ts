@@ -1,15 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
-import { User } from "../users/user.entity";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Unique } from "typeorm";
+import { UserRol } from "../user-rols/user-rol.entity";
 
 @Entity({ name: 'rols' })
+@Unique(['name'])
 export class Rol {
 
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column({ type: 'varchar', length: 13 })
-    name: number;
+    name: string;
 
-    @ManyToOne(type => User, user => user.phones, { nullable: false })
-    user: User;
+    @OneToMany(type => UserRol, userRol => userRol.rol)
+    userRoles: UserRol[];
 }

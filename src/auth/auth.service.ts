@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt'
 import { UsersService } from '../users/users.service';
 import { loginDto } from './dtos/login.dto';
 import { UserDto } from '../users/dtos/user.dto';
+import { BadRequestException } from '../exceptions/bad-request.exception';
 
 const bcrypt = require('bcrypt');
 
@@ -18,7 +19,7 @@ export class AuthService {
                 access_token: this.jwtService.sign(payload)
             };
         }
-        return null;
+        throw new BadRequestException();
     }
 
     signIn(userDto: UserDto) {

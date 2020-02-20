@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { User } from "../users/user.entity";
 
-@Entity({name: 'phones'})
+@Entity({ name: 'phones' })
 export class Phone {
 
     @PrimaryGeneratedColumn()
@@ -10,7 +10,10 @@ export class Phone {
     @Column()
     number: string;
 
-    @ManyToOne(type => User, user => user.phones, {nullable: false})
+    @Column()
+    userId: number;
+
+    @ManyToOne(type => User, user => user.phones, { nullable: false })
     user: User;
 
 }

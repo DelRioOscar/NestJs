@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import { Exclude } from 'class-transformer'
 
 import { Phone } from '../phones/phone.entity';
-import { Rol } from '../rols/rol.entity';
+import { UserRol } from '../user-rols/user-rol.entity';
 
 
 const bcrypt = require('bcrypt');
@@ -43,7 +43,6 @@ export class User {
     @OneToMany(type => Phone, phone => phone.user)
     phones: Phone[];
 
-
-    @OneToMany(type => Rol, rol => rol.user)
-    rols: Rol[];
+    @OneToMany(type => UserRol, userRol => userRol.user)
+    userRoles: UserRol[];
 }
