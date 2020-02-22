@@ -12,7 +12,7 @@ export class AuthController {
     constructor(private authService: AuthService) { }
 
     @Post('login')
-    @UsePipes(new JoiValidationPipe(loginSchema))
+    //@UsePipes(new JoiValidationPipe(loginSchema))
     logIn(@Body() loginDto: loginDto) {
         return this.authService.validateUser(loginDto);
     }

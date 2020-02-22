@@ -2,6 +2,7 @@ import { Controller, Get, Param, Post, Body, Put, Delete, UseGuards, UseIntercep
 import { UserDto } from './dtos/user.dto';
 import { UsersService } from './users.service';
 import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from '../guards/roles.guard';
 
 @UseInterceptors(ClassSerializerInterceptor)
 @UseGuards(AuthGuard('jwt'))
@@ -20,6 +21,7 @@ export class UsersController {
         return this.usersService.findOne(id);
     }
 
+    @UseGuards(new RolesGuard('Administrador'))
     @Post()
     create(@Body() user: UserDto) {
         return this.usersService.create(user);
