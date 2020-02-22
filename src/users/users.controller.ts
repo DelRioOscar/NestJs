@@ -21,7 +21,7 @@ export class UsersController {
         return this.usersService.findOne(id);
     }
 
-    @UseGuards(new RolesGuard('Administrador'))
+    @UseGuards(new RolesGuard('Usuario'))
     @Post()
     create(@Body() user: UserDto) {
         return this.usersService.create(user);
