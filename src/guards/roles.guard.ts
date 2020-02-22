@@ -8,9 +8,9 @@ export class RolesGuard implements CanActivate {
 
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
-    const { rol } = request.user;
-
-    if (this.rol != rol) throw new UnauthorizedException();
+    let roles: string[] = [];
+    request.user.roles.forEach(r => roles.push(r.rol));
+    if (!roles.includes(this.rol)) throw new UnauthorizedException();
     return true;
 
   }

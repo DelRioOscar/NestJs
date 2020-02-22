@@ -39,6 +39,14 @@ export class UsersService {
     }
 
     async findByEmail(email: string) {
-        return await this.usersRepository.findOne({ email });
+        return await this.usersRepository.findOne({ email }, {
+            join: {
+                alias: 'y',
+                innerJoinAndSelect: {
+                    userRoles: 'y.userRoles',
+                    rol: 'userRoles.rol'
+                }
+            }
+        });
     }
 }
