@@ -10,7 +10,10 @@ export class UsersService {
     constructor(@InjectRepository(User) private usersRepository: Repository<User>) { }
 
     async findAll() {
-        return await this.usersRepository.find({relations: ['userRoles']});
+        return await this.usersRepository.find({
+            relations: ['userRoles']
+        }
+        );
     }
 
     async findOne(id: number) {

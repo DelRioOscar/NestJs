@@ -9,6 +9,10 @@ export class UserRolsService {
 
     constructor(@InjectRepository(UserRol) private userRolsRepository: Repository<UserRol>) { }
 
+    findAll() {
+        return this.userRolsRepository.find({ relations: ['user', 'rol'] });
+    }
+
     async create(userRolDto: UserRolDto) {
         return await this.userRolsRepository.save(userRolDto);
     }

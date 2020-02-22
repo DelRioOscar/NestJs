@@ -1,5 +1,5 @@
 
-import { IsEmail, IsNotEmpty } from 'class-validator'
+import { IsEmail, IsNotEmpty, Matches } from 'class-validator'
 
 export class loginDto {
 
